@@ -8,6 +8,13 @@ export interface WeatherResponseI {
   rain: { '1h'?: number; '3h'?: number };
   clouds: { all: number };
   timezone: number;
+  sys: {
+    type: number;
+    id: number;
+    country: string;
+    sunrise: number;
+    sunset: number;
+  };
   id: number;
   name: string;
   cod: number;
