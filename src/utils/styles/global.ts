@@ -1,6 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+  .container{
+    max-width:1080px;
+    width:calc(100% - 40px);
+    margin:0 auto;
+  }
   * {
     padding:0;
     margin:0;
@@ -34,7 +39,7 @@ export default createGlobalStyle`
   }
   body {
     line-height: 1;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
   ol, ul {
     list-style: none;

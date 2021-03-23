@@ -1,13 +1,44 @@
-export interface WeatherResponseI {
-  coord: Coordenadas;
-  weather: WeatherI[];
-  base: string;
-  main: TemperatureI;
+export interface CurrentI {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  temp: number;
+  feels_like: number;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  uvi: number;
+  clouds: number;
   visibility: number;
-  wind: WindI;
-  rain: { '1h'?: number; '3h'?: number };
-  clouds: { all: number };
-  timezone: number;
+  wind_speed: number;
+  wind_deg: number;
+  weather: WeatherI[];
+}
+
+export interface WeatherCurrentCityI {
+  coord: {
+    lon: number;
+    lat: number;
+  };
+  weather: WeatherI[];
+  base: 'stations';
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+  };
+  visibility: number;
+  wind: {
+    speed: number;
+    deg: number;
+  };
+  clouds: {
+    all: number;
+  };
+  dt: number;
   sys: {
     type: number;
     id: number;
@@ -15,16 +46,23 @@ export interface WeatherResponseI {
     sunrise: number;
     sunset: number;
   };
+  timezone: number;
   id: number;
   name: string;
   cod: number;
 }
 
-export interface WindI {
-  speed: number;
-  deg: number;
-  gust: number;
+export interface WeatherResponseI {
+  lat: number;
+  lon: number;
+  timezone: string;
+  timezone_offset: number;
+  current: CurrentI;
+  minutely: MinutlyI[];
+  hourly: HourI[];
+  daily: DailyI[];
 }
+
 export interface WeatherI {
   id: number;
   main: string;
@@ -32,16 +70,44 @@ export interface WeatherI {
   icon: string;
 }
 
-export interface TemperatureI {
-  temp: number;
-  feels_like: number;
-  temp_min: number;
-  temp_max: number;
-  pressure: number;
-  humidity: number;
+export interface MinutlyI {
+  dt: number;
+  precipitation: number;
 }
 
-export interface Coordenadas {
-  lon: number;
-  lat: number;
+export interface HourI extends CurrentI {
+  pop: number;
+}
+
+export interface DailyI {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  temp: TemperatureI;
+  feels_like: FeelsLikeI;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  wind_speed: number;
+  wind_deg: number;
+  weather: WeatherI[];
+  clouds: number;
+  pop: number;
+  rain: number;
+  uvi: number;
+}
+
+export interface TemperatureI {
+  day: number;
+  min: number;
+  max: number;
+  night: number;
+  eve: number;
+  morn: number;
+}
+export interface FeelsLikeI {
+  day: number;
+  night: number;
+  eve: number;
+  morn: number;
 }
