@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable default-case */
 import {
   createContext,
@@ -10,7 +11,6 @@ import {
 
 interface LocationI {
   location: GeolocationCoordinates;
-  permissions: string;
 }
 
 const LocationContext = createContext({} as LocationI);
@@ -23,32 +23,27 @@ export const LocationProvider = ({
   children?: ReactNode;
 }): JSX.Element => {
   const [location, setLocation] = useState({} as GeolocationCoordinates);
-  const [permissions, setPermissions] = useState<string>('');
-  const successPermission = () =>
-    navigator.geolocation.getCurrentPosition(position =>
-      setLocation(position.coords),
-    );
+  const [allowGeoRecall, setAllowGeoRecall] = useState(true);
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successPermission, () => {
+        if (allowGeoRecall) getLocation();
+      });
+    }
+  }
+  const successPermission = (position: GeolocationPosition) => {
+    setLocation(position.coords);
+    setAllowGeoRecall(false);
+  };
+
   useEffect(() => {
-    navigator.permissions.query({ name: 'geolocation' }).then(({ state }) => {
-      switch (state) {
-        case 'granted':
-          successPermission();
-          setPermissions('permitido');
-          break;
-        case 'prompt':
-          successPermission();
-          setPermissions('permitido');
-          break;
-        case 'denied':
-          setPermissions('negado');
-          break;
-      }
-    });
+    getLocation();
   }, []);
   return createElement(
     LocationContext.Provider,
     {
-      value: { location, permissions },
+      value: { location },
     },
     children,
   );

@@ -90,9 +90,27 @@ const Home: React.FC = () => {
               </a>
             </>
           )}
+          <DaysContainer className="interno">
+            {oneCall.daily &&
+              oneCall.daily.map((daily, index) => {
+                const date = new Date();
+                // Setando a hora
+                date.setDate(date.getDate() + (index + 1));
+                return index < 24 ? (
+                  <CardDay
+                    day={date.toLocaleDateString('pt-br', {
+                      day: '2-digit',
+                      month: '2-digit',
+                    })}
+                    image={daily.weather[0].icon}
+                    description={daily.weather[0].description}
+                  />
+                ) : null;
+              })}
+          </DaysContainer>
         </InformationContainer>
       </Container>
-      <DaysContainer>
+      <DaysContainer className="externo">
         <div className="container">
           {oneCall.daily &&
             oneCall.daily.map((daily, index) => {
