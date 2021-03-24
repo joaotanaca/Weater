@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { IoLocationSharp } from 'react-icons/io5';
+import CardDay from 'src/components/CardDay';
 import CardHour from 'src/components/CardHour';
 import { Container, InformationContainer, DaysContainer } from './styles';
 import { useLocation } from '../../contexts/location';
@@ -92,7 +93,24 @@ const Home: React.FC = () => {
         </InformationContainer>
       </Container>
       <DaysContainer>
-        <div className="container">aaa</div>
+        <div className="container">
+          {oneCall.daily &&
+            oneCall.daily.map((daily, index) => {
+              const date = new Date();
+              // Setando a hora
+              date.setDate(date.getDate() + (index + 1));
+              return index < 24 ? (
+                <CardDay
+                  day={date.toLocaleDateString('pt-br', {
+                    day: '2-digit',
+                    month: '2-digit',
+                  })}
+                  image={daily.weather[0].icon}
+                  description={daily.weather[0].description}
+                />
+              ) : null;
+            })}
+        </div>
       </DaysContainer>
     </>
   );

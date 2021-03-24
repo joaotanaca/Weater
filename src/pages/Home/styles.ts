@@ -87,5 +87,11 @@ export const DaysContainer = styled.div`
   background-color: #006fec;
   color: #fff;
   margin-top: 20px;
-  padding: 15px 0;
+  padding: 30px 0 15px;
+  .container {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 15px;
+  }
 `;
