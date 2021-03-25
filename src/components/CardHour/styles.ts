@@ -1,6 +1,9 @@
+import { motion } from 'framer-motion';
+import mixins from 'src/utils/styles/mixins';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled(motion.div)`
+  visibility: visible !important;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -22,4 +25,13 @@ export const Container = styled.div`
     height: 50px;
     object-fit: cover;
   }
+  ${mixins.sm`
+    margin-right:0;
+    p{
+      font-size: calc(6px + 1vw);
+      img{
+        width: 60px;
+      }
+    }
+  `}
 `;

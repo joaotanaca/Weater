@@ -21,8 +21,8 @@ export const InformationContainer = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
     grid-template-areas: "city temp"
-                         "days days"
                          "hours hours"
+                         "days days"
                          "credits credits";
     h1{
       grid-area:city;
@@ -79,8 +79,8 @@ export const InformationContainer = styled.div`
     padding-bottom: 20px;
     ${mixins.sm`
       grid-area:hours;
-      display: flex;
-      flex-flow: row wrap;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
       margin-top:10px;
     `}
   }
@@ -123,6 +123,15 @@ export const DaysContainer = styled.div`
   color: #fff;
   margin-top: 20px;
   padding: 30px 0 15px;
+  .container {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 15px;
+  }
+  &.interno {
+    display: none;
+  }
   ${mixins.sm`
     grid-area: days;
     margin-top: 0;
@@ -134,18 +143,10 @@ export const DaysContainer = styled.div`
         margin: 0 !important;
         border-radius: 14px;
         padding: 15px 0 !important;
+        margin-top:15px!important;
     }
     &.externo{
       display: none;
     }
   `}
-  .container {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 15px;
-  }
-  &.interno {
-    display: none;
-  }
 `;

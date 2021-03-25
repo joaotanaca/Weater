@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { IoLocationSharp } from 'react-icons/io5';
 import CardDay from 'src/components/CardDay';
 import CardHour from 'src/components/CardHour';
+import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
 import { Container, InformationContainer, DaysContainer } from './styles';
 import { useLocation } from '../../contexts/location';
 import api from '../../services/api';
@@ -15,6 +16,7 @@ import {
 const Home: React.FC = () => {
   const [weather, setWeather] = useState({} as WeatherCurrentCityI);
   const [oneCall, setOneCall] = useState({} as WeatherResponseI);
+  const [selectHour, setSelectHour] = useState<string | null>();
   const { location } = useLocation();
   // const days = [
   //   'Domingo',
@@ -71,11 +73,12 @@ const Home: React.FC = () => {
                     const date = new Date();
                     // Setando a hora
                     date.setTime(date.getTime() + (index + 1) * 60 * 60 * 1000);
-                    return index < 24 ? (
+                    return index < 12 ? (
                       <CardHour
                         hour={date.getHours()}
                         icon={hour.weather[0].icon}
                         temp={hour.temp}
+                        layoutId={`${index}-${date.getHours()}`}
                       />
                     ) : null;
                   })}
