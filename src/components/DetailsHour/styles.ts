@@ -6,13 +6,14 @@ export const Container = styled.div`
   background-color: #80b7f6;
   color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding-right: 20px;
   border-radius: 10px;
   margin-bottom: 15px;
   font-size: calc(8px + 1.5vw);
   ${mixins.sm`
+    font-size: calc(4px + 1vw);
     margin-bottom:0;
   `}
   &:target {

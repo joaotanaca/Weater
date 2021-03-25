@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
@@ -19,15 +20,6 @@ const Home: React.FC = () => {
   const [weather, setWeather] = useState({} as WeatherCurrentCityI);
   const [oneCall, setOneCall] = useState({} as WeatherResponseI);
   const { location } = useLocation();
-  // const days = [
-  //   'Domingo',
-  //   'Segunda',
-  //   'Terça',
-  //   'Quarta',
-  //   'Quinta',
-  //   'Sexta',
-  //   'Sabádo',
-  // ];
   useEffect(() => {
     if (location.latitude) {
       api
@@ -76,6 +68,7 @@ const Home: React.FC = () => {
                     date.setTime(date.getTime() + (index + 1) * 60 * 60 * 1000);
                     return index < 12 ? (
                       <CardHour
+                        key={`${hour.dt}-card_hour`}
                         hour={date.getHours()}
                         icon={hour.weather[0].icon}
                         temp={hour.temp}
@@ -102,6 +95,7 @@ const Home: React.FC = () => {
                 date.setDate(date.getDate() + (index + 1));
                 return index < 24 ? (
                   <CardDay
+                    key={`${daily.dt}-${index}-card_daily`}
                     day={date.toLocaleDateString('pt-br', {
                       day: '2-digit',
                       month: '2-digit',
@@ -145,6 +139,7 @@ const Home: React.FC = () => {
                 date.setTime(date.getTime() + (index + 1) * 60 * 60 * 1000);
                 return index < 12 ? (
                   <DetailsHour
+                    key={`${hour.dt}-details_hour`}
                     id={`${index}-${date.getHours()}`}
                     time={date.getHours()}
                     {...hour}
@@ -152,7 +147,6 @@ const Home: React.FC = () => {
                 ) : null;
               })}
           </div>
-          <div className="days" />
         </div>
       </DetailtsContainer>
     </>

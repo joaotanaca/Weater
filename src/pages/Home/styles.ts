@@ -154,14 +154,14 @@ export const DaysContainer = styled.div`
 `;
 
 export const DetailtsContainer = styled.div`
-  margin-top: 20px;
+  margin: 20px 0;
   .container {
     h2 {
       font-size: calc(12px + 1vw);
       font-weight: bold;
       margin: 25px 0 15px;
       ${mixins.sm`
-        font-size: calc(8px + 1vw);
+        font-size: calc(8px + 1vw)!important;
       `}
     }
     .hour {
