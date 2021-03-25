@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   margin-right: 15px;
+  user-select: none;
   ${mixins.sm`
     margin-right: 0px;    
     display:flex;

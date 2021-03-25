@@ -4,13 +4,16 @@ import React, { useEffect, useState } from 'react';
 import { IoLocationSharp } from 'react-icons/io5';
 import CardDay from 'src/components/CardDay';
 import CardHour from 'src/components/CardHour';
-import { Container, InformationContainer, DaysContainer } from './styles';
-import { useLocation } from '../../contexts/location';
-import api from '../../services/api';
+import DetailsHour from 'src/components/DetailsHour';
+import { useLocation } from 'src/contexts/location';
+import api from 'src/services/api';
+import { WeatherCurrentCityI, WeatherResponseI } from 'src/interfaces/weather';
 import {
-  WeatherCurrentCityI,
-  WeatherResponseI,
-} from '../../interfaces/weather';
+  Container,
+  InformationContainer,
+  DaysContainer,
+  DetailtsContainer,
+} from './styles';
 
 const Home: React.FC = () => {
   const [weather, setWeather] = useState({} as WeatherCurrentCityI);
@@ -131,6 +134,27 @@ const Home: React.FC = () => {
             })}
         </div>
       </DaysContainer>
+      <DetailtsContainer>
+        <div className="container">
+          <h2>Horas detalhadas </h2>
+          <div className="hour">
+            {oneCall.hourly &&
+              oneCall.hourly.map((hour, index) => {
+                const date = new Date();
+                // Setando a hora
+                date.setTime(date.getTime() + (index + 1) * 60 * 60 * 1000);
+                return index < 12 ? (
+                  <DetailsHour
+                    id={`${index}-${date.getHours()}`}
+                    time={date.getHours()}
+                    {...hour}
+                  />
+                ) : null;
+              })}
+          </div>
+          <div className="days" />
+        </div>
+      </DetailtsContainer>
     </>
   );
 };

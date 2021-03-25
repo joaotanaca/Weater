@@ -92,6 +92,7 @@ export const InformationContainer = styled.div`
     font-size: calc(10px + 1vw);
     margin-top: 30px;
     ${mixins.sm`
+      display:none;
       grid-area:credits;
       align-self:flex-end;
       font-size: calc(4px + 1vw);
@@ -150,4 +151,27 @@ export const DaysContainer = styled.div`
       display: none;
     }
   `}
+`;
+
+export const DetailtsContainer = styled.div`
+  margin-top: 20px;
+  .container {
+    h2 {
+      font-size: calc(12px + 1vw);
+      font-weight: bold;
+      margin: 25px 0 15px;
+      ${mixins.sm`
+        font-size: calc(8px + 1vw);
+      `}
+    }
+    .hour {
+      display: flex;
+      flex-flow: column;
+      ${mixins.sm`
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:15px;
+      `}
+    }
+  }
 `;

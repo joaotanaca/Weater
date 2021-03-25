@@ -16,7 +16,7 @@ const components = ({
   ...props
 }: CardHourProps): JSX.Element => {
   return (
-    <Container {...props}>
+    <Container href={`#${props.layoutId}`} {...props}>
       <p>{`${hour}${hour > 12 ? 'pm' : 'am'}`}</p>
       <img
         src={`http://openweathermap.org/img/wn/${icon}@2x.png`}

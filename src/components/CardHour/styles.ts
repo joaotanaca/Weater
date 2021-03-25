@@ -1,13 +1,15 @@
 import mixins from 'src/utils/styles/mixins';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.a`
   display: flex;
   flex-flow: column;
   align-items: center;
   margin-right: 10px;
   padding: 10px 0;
   border-radius: 7px;
+  text-decoration: none;
+  color: #000;
   &:hover {
     background-color: rgba(189, 222, 243, 0.7);
   }
