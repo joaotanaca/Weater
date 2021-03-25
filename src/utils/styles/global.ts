@@ -38,6 +38,7 @@ export default createGlobalStyle`
     display: block;
   }
   body {
+    scroll-behavior:smooth;
     line-height: 1;
     font-family: 'Montserrat', sans-serif;
   }

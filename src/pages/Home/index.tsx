@@ -72,7 +72,7 @@ const Home: React.FC = () => {
                         hour={date.getHours()}
                         icon={hour.weather[0].icon}
                         temp={hour.temp}
-                        layoutId={`${index}-${date.getHours()}`}
+                        layoutId={`${index}-${hour.dt}`}
                       />
                     ) : null;
                   })}
@@ -140,7 +140,7 @@ const Home: React.FC = () => {
                 return index < 12 ? (
                   <DetailsHour
                     key={`${hour.dt}-details_hour`}
-                    id={`${index}-${date.getHours()}`}
+                    id={`${index}-${hour.dt}`}
                     time={date.getHours()}
                     {...hour}
                   />
