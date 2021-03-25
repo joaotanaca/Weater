@@ -94,6 +94,7 @@ export const InformationContainer = styled.div`
     ${mixins.sm`
       grid-area:credits;
       align-self:flex-end;
+      font-size: calc(4px + 1vw);
     `}
     img {
       height: 20px;
